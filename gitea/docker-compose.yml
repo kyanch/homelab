@@ -1,0 +1,29 @@
+networks:
+  gitea:
+    external: false
+  proxy:
+    name: nginx-proxy
+    external: true
+
+services:
+  server:
+    image: gitea/gitea:1.22.3
+    container_name: gitea
+    environment:
+      VIRTUAL_HOST: git.rpi.lan
+      VIRTUAL_PORT: 3000
+      LOCAL_ROOT_URL: http://git.rpi.lan/
+      USER_UID: 1026
+      USER_GID: 100
+    restart: no
+    networks:
+      - gitea
+      - proxy
+    volumes:
+      - /srv/docker/gitea:/data
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+    ports:
+      - "222:22"
+    expose:
+      - 3000

@@ -1,0 +1,20 @@
+
+services:
+  registry:
+    image: registry:2
+    environment:
+      REGISTRY_HTTP_ADDR: 0.0.0.0:5001
+      VIRTUAL_HOST: reg.rpi.lan
+      VIRTUAL_PORT: 5001
+    volumes:
+      - /srv/docker/registry:/var/lib/registry
+    restart: always
+    ports:
+      - "5001:5001"
+    networks:
+      - proxy
+
+networks:
+  proxy:
+    name: nginx-proxy
+    external: true

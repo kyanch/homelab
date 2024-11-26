@@ -1,0 +1,19 @@
+
+services:
+  mihomo:
+    container_name: meta
+    image: docker.io/metacubex/mihomo:Alpha
+    restart: always
+    networks:
+      - proxy
+    volumes:
+      - ./config.yaml:/root/.config/mihomo/config.yaml
+    ports:
+      - "9090:9090"
+      - "7890:7890"
+
+networks:
+  proxy:
+    name: nginx-proxy
+    external: true
+
