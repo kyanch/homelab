@@ -4,7 +4,7 @@ services:
     image: registry:2
     environment:
       REGISTRY_HTTP_ADDR: 0.0.0.0:5001
-      VIRTUAL_HOST: reg.rpi.lan
+      VIRTUAL_HOST: reg.${CUSTOM_DOMAIN}
       VIRTUAL_PORT: 5001
     volumes:
       - /srv/docker/registry:/var/lib/registry

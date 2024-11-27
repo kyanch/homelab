@@ -6,11 +6,11 @@ networks:
     external: true
 
 services:
-  server:
+  gitea:
     image: gitea/gitea:1.22.3
     container_name: gitea
     environment:
-      VIRTUAL_HOST: git.rpi.lan
+      VIRTUAL_HOST: git.${CUSTOM_DOMAIN}
       VIRTUAL_PORT: 3000
       LOCAL_ROOT_URL: http://git.rpi.lan/
       USER_UID: 1026

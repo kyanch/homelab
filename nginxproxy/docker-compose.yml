@@ -8,7 +8,7 @@ services:
       - "443:443"
     volumes:
       - /var/run/docker.sock:/tmp/docker.sock:ro
-      - ./certs:/etc/nginx/certs
+      - /srv/docker/certs:/etc/nginx/certs
     environment:
       TRUST_DOWNSTREAM_PROXY: false
 
